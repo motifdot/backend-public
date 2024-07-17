@@ -1,0 +1,81 @@
+version: '3.3'
+
+services:
+  caddy:
+      image: caddy:2.7-alpine
+      restart: unless-stopped
+      ports:
+        - 
+        - 
+      volumes:
+        - caddy:/data
+        - /opt/runner/Caddyfile:/etc/caddy/Caddyfile
+
+  backend: 
+    restart: unless-stopped
+    build:
+      context: ./src/
+      network: host
+    expose:
+      - 
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: superset
+      TELEGRAM_URI: https://api.telegram.org/
+      OPENAI_API_KEY: ************************
+      OPENAI_ASSISTANT_ID: ************************
+      TELEGRAM_BOT_TOKEN: ************************
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  superset:
+    build: ./superset/
+
+    restart: unless-stopped
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=superset  
+      - ADMIN_USERNAME=habibi
+      - ADMIN_EMAIL=admin@superset.com
+      - ADMIN_PASSWORD=hamood
+    expose:
+      - 
+    volumes: 
+      - 
+      - 
+  postgres:
+    image: postgres:14
+    command: postgres -c idle_in_transaction_session_timeout=30000
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=superset  
+    volumes:
+      - postgres_data:/var/lib/postgresql/data 
+    expose:
+      - 
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s 
+      timeout: 5s
+      retries: 5
+
+
+volumes:
+  caddy: {}
+  postgres_data: {}
+  superset_app: {}
+  superset_root: {}
+
+
+networks:
+  default:
+    external:
+      name: prod 
+

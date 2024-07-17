@@ -1,0 +1,16 @@
+{
+    "name": "fetch_relevant_data",
+    "description": "Fetch relevant data for a given Polkadot mainnet nominator address. Returns a JSON object with sub-jsons for dashboard, and top performing nominators data.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "description": "A Polkadot mainnet address"
+        }
+      },
+      "required": [
+        "address"
+      ]
+    }
+}

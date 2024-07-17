@@ -1,0 +1,11 @@
+pandas
+google-cloud-storage
+python-telegram-bot==13.7
+openai
+substrate-interface
+Jinja2
+schedule
+beautifulsoup4
+psycopg2
+requests
+flask
