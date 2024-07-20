@@ -1,8 +1,9 @@
-# Motif: Smart Staking Support Ecosystem for Polkadot
+# Motif: AI-Driven Staking Optimization Platform.
 
 ![Motif Logo](pic/logo_full.jpg)
 
-Motif is a smart staking support ecosystem focused on supporting nominators and helping them navigate staking in Polkadot's NPoS system.
+Motif: AI-Driven Staking Optimization Platform.
+Simplifying Polkadot Staking with Real-Time Notifications, ML-driven Pools and AI-based Staking Support
 
 ## Our Objectives
 
